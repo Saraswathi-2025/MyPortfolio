@@ -1,0 +1,578 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* adjust for navbar height */
+}
+
+/* -------------------------
+   Global Reset
+   ------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f7f9fc;
+  color: #333;
+  line-height: 1.6;
+  padding: 30px 12px;
+}
+
+/* -------------------------
+   Container
+   ------------------------- */
+.container {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+/* -------------------------
+   Navbar
+   ------------------------- */
+/* ==== Navigation Bar with Transparent Scroll Effect ==== */
+.navbar {
+  background: rgba(0, 123, 255, 0.9); /* initial bright blue */
+  backdrop-filter: blur(8px); /* adds smooth glass blur */
+  -webkit-backdrop-filter: blur(8px);
+  padding: 18px 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+  transition: all 0.4s ease, box-shadow 0.6s ease;
+}
+
+/* When scrolled (shrink mode) */
+.navbar.shrink {
+  background: rgba(0, 86, 179, 0.75); /* slightly darker + more transparent */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px 0;
+  box-shadow: 0 0 25px rgba(0, 123, 255, 0.5);
+  transform: translateY(0);
+}
+
+/* Navbar Links */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 20px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ffe082;
+  text-shadow: 0 0 10px #ffe082;
+}
+
+/* Dark mode adjustment */
+[data-theme="dark"] .navbar {
+  background: rgba(0, 153, 204, 0.7);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+/* Navbar links */
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  margin: 0 20px;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ffe082;
+  text-shadow: 0 0 10px #ffe082;
+}
+.navbar {
+  transition: transform 0.4s ease, background 0.4s ease, box-shadow 0.4s ease;
+}
+/* 🌙 Dark mode glowing navbar */
+[data-theme="dark"] .navbar {
+  background: linear-gradient(90deg, #00c6ff, #0099cc);
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+  animation: navbarGlowDark 3s ease-in-out infinite alternate;
+}
+
+/* ---- Glow Animations ---- */
+@keyframes navbarGlow {
+  from {
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+  }
+  to {
+    box-shadow: 0 0 35px rgba(0, 123, 255, 0.6);
+  }
+}
+
+@keyframes navbarGlowDark {
+  from {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+  to {
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.8);
+  }
+}
+
+/* -------------------------
+   Header
+   ------------------------- */
+/* ==== Header Section with Hover Glow ==== */
+.site-header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #4da9ff, #6cb2eb, #b3c7f9);
+  color: white;
+  border-radius: 18px;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 0 rgba(77, 169, 255, 0);
+}
+
+/* When hovered — soft animated gradient glow */
+.site-header:hover {
+  background: linear-gradient(135deg, #4da9ff, #7fc8ff, #b3c7f9);
+  background-size: 200% 200%;
+  animation: headerGradientShift 4s ease-in-out infinite alternate;
+  box-shadow: 0 0 15px rgba(77, 169, 255, 0.35),
+              0 0 30px rgba(179, 199, 249, 0.25);
+  transform: scale(1.005);
+}
+
+/* Smooth color-shift animation */
+@keyframes headerGradientShift {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Header Title and Name */
+.site-header h1 {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.site-header .name {
+  font-weight: 700;
+}
+
+/* Profile photo glow */
+.profile-img {
+  display: block;
+  margin: 10px auto;
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255,255,255,0.8);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.7),
+              0 0 45px rgba(0, 123, 255, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+  transform: scale(1.05);
+}
+
+/* Typing tagline */
+.site-header .tagline {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  opacity: 0.95;
+  display: inline-block;
+  border-right: 3px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blinkCursor 0.7s infinite;
+}
+
+@keyframes blinkCursor {
+  50% { border-color: transparent; }
+}
+/* -------------------------
+   Sections
+   ------------------------- */
+section {
+  margin-top: 28px;
+  background: #f8f9fc;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.03);
+}
+
+section h2 {
+  color: #2b2d42;
+  border-bottom: 2px solid #6cb2eb;
+  display: inline-block;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+}
+
+section p {
+  margin-top: 10px;
+  color: #444;
+}
+
+/* -------------------------
+   Lists
+   ------------------------- */
+ul {
+  list-style-type: square;
+  padding-left: 25px;
+  margin-top: 12px;
+}
+
+ul li {
+  padding: 6px 0;
+  font-size: 1.05rem;
+  transition: 0.2s ease;
+}
+
+ul li:hover {
+  color: #0077b6;
+  transform: translateX(5px);
+}
+
+/* -------------------------
+   Links
+   ------------------------- */
+a {
+  color: #0078d7;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+a:hover {
+  text-decoration: underline;
+  color: #004d99;
+}
+
+/* ---- Download Resume Button (Adaptive Glow) ---- */
+.btn-resume {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1em;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 123, 255, 0.4);
+  cursor: pointer;
+}
+
+.btn-resume .icon {
+  margin-right: 10px;
+  font-size: 1.15em;
+  display: inline-block;
+  animation: bounce 2s infinite;
+}
+
+/* Hover effect - stronger glow */
+.btn-resume:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 123, 255, 0.6);
+}
+
+/* 🌙 Dark Mode Version (cyan glow) */
+[data-theme="dark"] .btn-resume {
+  background: linear-gradient(90deg, #00c6ff, #0099cc);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
+[data-theme="dark"] .btn-resume:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+/* 🔆 Optional pulse animation for subtle glow */
+@keyframes buttonPulse {
+  from { box-shadow: 0 0 15px rgba(0, 123, 255, 0.3); }
+  to   { box-shadow: 0 0 25px rgba(0, 123, 255, 0.6); }
+}
+
+[data-theme="dark"] .btn-resume {
+  animation: buttonPulse 3s ease-in-out infinite alternate;
+}
+
+/* -------------------------
+   Projects Footer
+   ------------------------- */
+.projects-footer {
+  text-align: center;
+  background: #2563eb;
+  color: white;
+  padding: 18px 12px;
+  margin-top: 28px;
+  border-radius: 8px;
+}
+
+.projects-footer a {
+  color: #ffe082;
+  font-weight: 600;
+}
+.projects-footer a:hover { color: #fff; }
+
+/* -------------------------
+   Contact Footer
+   ------------------------- */
+.contact-footer {
+  margin-top: 36px;
+  background: linear-gradient(90deg, #4da9ff, #007bff);
+  color: white;
+  text-align: center;
+  padding: 36px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.contact-footer h2 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+.contact-footer p {
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+.contact-links {
+  margin: 14px 0;
+}
+.contact-links a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.contact-links a:hover { color: #ffe082; }
+
+.contact-footer .copyright {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+}
+
+/* -------------------------
+   Back to Top Button
+   ------------------------- */
+#backToTop {
+  position: fixed;
+  right: 18px;
+  bottom: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(90deg,#007bff,#00c6ff);
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 9999;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+#backToTop.show {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+#backToTop:hover {
+  transform: translateY(-4px);
+}
+
+/* -------------------------
+   Reveal Animation on Scroll
+   ------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 600ms ease, transform 600ms ease;
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* -------------------------
+   Responsive Tweaks
+   ------------------------- */
+@media (max-width: 720px) {
+  .container { padding: 20px; }
+  .profile-img { width: 110px; height: 110px; }
+  .contact-footer, .projects-footer { padding: 22px 12px; }
+  section { width: 100%; padding: 16px; }
+}
+/* -------------------------
+   🌗 Dark/Light Theme Toggle
+   ------------------------- */
+:root {
+  --bg: #f7f9fc;
+  --card: #ffffff;
+  --text: #222;
+  --accent: #0078d7;
+}
+
+/* 🌙 Improved Dark Theme Colors */
+[data-theme="dark"] {
+  --bg: #0d1117;       /* background of the page */
+  --card: #161b22;     /* background of sections */
+  --text: #f0f6fc;     /* bright readable text */
+  --accent: #58a6ff;   /* link & button color */
+}
+
+/* Apply theme colors */
+[data-theme="dark"] body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+[data-theme="dark"] .container,
+[data-theme="dark"] section {
+  background-color: var(--card);
+  color: var(--text);
+}
+
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] p,
+[data-theme="dark"] li {
+  color: var(--text);
+}
+
+/* Update navbar */
+[data-theme="dark"] .navbar {
+  background: linear-gradient(90deg, #003366, #0056b3);
+}
+
+/* Buttons */
+[data-theme="dark"] .btn-resume {
+  background: linear-gradient(90deg, #007bff, #00b4d8);
+  color: #fff;
+}
+
+[data-theme="dark"] .btn-resume:hover {
+  background: linear-gradient(90deg, #00b4d8, #007bff);
+}
+
+/* Footers */
+[data-theme="dark"] .projects-footer,
+[data-theme="dark"] .contact-footer {
+  background: linear-gradient(90deg, #002b5b, #004d99);
+  color: #e6eef8;
+}
+
+[data-theme="dark"] .contact-links a {
+  color: #58a6ff;
+}
+
+[data-theme="dark"] .contact-links a:hover {
+  color: #9cd8ff;
+}
+
+.container {
+  background: var(--card);
+}
+
+section {
+  background: var(--card);
+}
+
+a {
+  color: var(--accent);
+}
+
+/* Toggle Button */
+.theme-toggle {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.3);
+  color: white;
+  border-radius: 20px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 12px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.1);
+}
+html {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+html, body, section, .container, footer, .navbar {
+  transition: all 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+}
+/* 💫 Adaptive Profile Image Glow */
+.profile-img {
+  display: block;
+  margin: 10px auto;
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.8);
+  transition: box-shadow 0.5s ease, transform 0.3s ease, border-color 0.5s ease;
+}
+
+/* 🌞 Light mode glow (blue) */
+.profile-img:hover {
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.4),
+              0 0 40px rgba(0, 123, 255, 0.2);
+  transform: scale(1.03);
+}
+
+/* 🌙 Dark mode glow (cyan) */
+[data-theme="dark"] .profile-img {
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.6),
+              0 0 40px rgba(88, 166, 255, 0.3),
+              0 0 60px rgba(88, 166, 255, 0.15);
+  border-color: #58a6ff;
+}
+
+[data-theme="dark"] .profile-img:hover {
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.7),
+              0 0 50px rgba(0, 255, 255, 0.4),
+              0 0 70px rgba(0, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+[data-theme="dark"] .profile-img {
+  animation: subtleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes subtleGlow {
+  from { box-shadow: 0 0 20px rgba(88, 166, 255, 0.4); }
+  to   { box-shadow: 0 0 35px rgba(88, 166, 255, 0.7); }
+}
+/* 🌟 Profile Image Glow in Dark Mode */
+[data-theme="dark"] .profile-img {
+  box-shadow: 0 0 20px rgba(88, 166, 255, 0.6),
+              0 0 40px rgba(88, 166, 255, 0.3),
+              0 0 60px rgba(88, 166, 255, 0.15);
+  border-color: #58a6ff;
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+[data-theme="dark"] .profile-img:hover {
+  box-shadow: 0 0 25px rgba(88, 166, 255, 0.8),
+              0 0 50px rgba(88, 166, 255, 0.5),
+              0 0 70px rgba(88, 166, 255, 0.25);
+  transform: scale(1.03);
+}
